@@ -1,0 +1,25 @@
+
+version: "3"
+services:
+  apache:
+    build: ./apache
+    command: apachectl -D FOREGROUND
+    container_name:
+      "apache"
+    ports: 
+      - 80:80
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql/mysql-server:5.7
+    command: "mysqld --character-set-server=utf8 --collation-server=utf8_general_ci"
+    env_file:
+      - ".env"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_HOST="%"
+    container_name:
+      "mysql"
+    restart: always
+
