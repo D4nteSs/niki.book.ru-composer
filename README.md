@@ -2,5 +2,6 @@
 
 Project in process
  
-Project can install Bookstack automatically with docker-compose
-I myself write a docker-compose file without copy official docker-compose.yml
+docker-compose.yml по развертке сервера из двух контейнеров.
+
+У автора проекта есть свой ямл файл, однако я сам написал свой (он точно менее оптимизирован).
