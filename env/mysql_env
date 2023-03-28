@@ -1,0 +1,4 @@
+MYSQL_DATABASE=bookstack
+MYSQL_USER=bookstack
+MYSQL_PASSWORD=qwerty12345
+MYSQL_ROOT_PASSWORD=password

@@ -1,11 +1,5 @@
 FROM ubuntu:20.04
 
-VOLUME /etc/lib/mysql
-
-#Ручная настройка времени для вопроса при установки пакетоввсщлук
-#ENV TZ=Europe/Moscow
-#RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update &&\
@@ -14,19 +8,24 @@ RUN apt-get update &&\
     mysql-client\
     mysql-server -y
 
-COPY mdump.sql /var/lib/mysql
-
 RUN usermod -d /var/lib/mysql/ mysql &&\
 	sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mysql/mysql.conf.d/mysqld.cnf
 
+
+ENV MYSQL_NAME=bookstack\
+    MYSQL_USER=bookstack\
+    MYSQL_PASSWORD=qwerty12345
+ 
+
 RUN etc/init.d/mysql start &&\
-	mysql -u root --execute="CREATE DATABASE bookstack;" && \
-	mysql -u root --execute="CREATE USER 'bookstack'@'%' IDENTIFIED WITH mysql_native_password BY 'password';"  &&\
-	mysql -u root -ppassword bookstack < /var/lib/mysql/mdump.sql 
-	
+	mysql -u root -e "CREATE DATABASE ${MYSQL_USER}" &&\  
+	mysql -u root -e "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASSWORD}';" &&\
+	mysql -u root -e "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';" 
+        #FLUSH PRIVILEGES;"
+
 EXPOSE 3306
 
-#CMD ["mysqld_safe"]
+CMD ["mysqld_safe"]
 
 
 
