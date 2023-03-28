@@ -4,14 +4,25 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* &&\
     add-apt-repository ppa:ondrej/php &&\
-    apt install -y git unzip apache2 curl php8.2 php8.2-curl php8.2-mbstring php8.2-ldap \
-  php8.2-xml php8.2-zip php8.2-gd php8.2-mysql mysql-server-8.0 libapache2-mod-php8.2
+    apt install -y git \
+	wget \ 
+	unzip \
+	apache2 \
+	curl \
+	php8.2 \
+	php8.2-curl \
+	php8.2-mbstring \
+	php8.2-ldap \
+	php8.2-xml \
+	php8.2-zip \
+	php8.2-gd \
+	php8.2-mysql \
+	mysql-server-8.0 \
+	libapache2-mod-php8.2
 
 RUN sed -i -e '1 s/^/Listen 8888\n/;' /etc/apache2/ports.conf
 
 WORKDIR /var/www
-
-RUN apt install -y wget
 
 RUN wget https://github.com/BookStackApp/BookStack/archive/refs/tags/v22.11.zip  &&\
     unzip v22.11.zip &&\
