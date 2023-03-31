@@ -59,5 +59,4 @@ RUN a2enmod rewrite &&\
 
 EXPOSE 80
 
-#CMD ["apachectl", "-D", "FOREGROUND"]
 
