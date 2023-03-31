@@ -12,13 +12,13 @@ BookStack - это платформа с открытым исходным ко�
 Project was created on Ubuntu 20.04v <br>
 
 #### Requirements: <br>
-
+-----
 - Install docker on your machine
 
 Thats all))0) <br>
------
-#### Change ENV or PORT
 
+#### Change ENV or PORT
+-----
 If you want to change port, for example, 8080-8081, you should change 3 files from this project: <br>
 
 - docker-compose.yml (ports 80 -> needed port)
@@ -26,9 +26,9 @@ If you want to change port, for example, 8080-8081, you should change 3 files fr
 - apache/bookstack.conf (VirteulHost *:80 -> *.[needed port])
 
 To make yours user, password and database name change <b>envs</b> file
------
-#### Host 
 
+#### Host 
+-----
 If you install on local machine you must change your local hosts file necessarily
 
  
