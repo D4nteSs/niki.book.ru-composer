@@ -11,7 +11,6 @@ BookStack - это платформа с открытым исходным ко�
 
 Project was created on Ubuntu 20.04v <br>
 
------
 #### Requirements: <br>
 
 - Install docker on your machine
